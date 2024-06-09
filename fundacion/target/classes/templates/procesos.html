@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Procesos de Adopción</title>
+    <!-- Enlace al archivo CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Enlace a tu archivo de estilos personalizado si es necesario -->
+    <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
+    <style>
+        /* Estilo personalizado para ajustar el ancho de las columnas */
+        .col-width {
+            width: 10%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Menú -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/adoptantes/">Lista de Adoptantes</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/animales/">Lista de Animales</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/proceso/">Lista de Procesos</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/historial/">Lista Historiales Clinico</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/personal/">Lista de Personal Fundacion</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenido principal -->
+    <div class="container ml-lg-0"> <!-- Eliminamos el margen izquierdo en pantallas grandes -->
+        <a href="/reporte/procesos/excel" class="btn btn-primary">Descargar Reporte</a>
+    </div>
+
+    <div class="container-fluid"> <!-- Utilizamos container-fluid para que la tabla ocupe todo el ancho disponible -->
+        <h2 class="mt-6">Lista de Procesos de Adopción</h2>
+
+        <div class="table-responsive"> <!-- Agregamos la clase table-responsive para permitir el desplazamiento horizontal -->
+            <table id="dataTable" class="table table-striped mt-4">
+                <thead class="thead-dark">
+                    <tr>
+                        <th class="col-lg-0">ID</th>
+                        <th class="col-lg-1">Fecha Inicio Proceso</th>
+                        <th class="col-lg-1">Fecha Fin Proceso</th> 
+                        <th class="col-lg-0">Estado</th>
+                        <th class="col-lg-0">Id Animal</th>
+                        <th class="col-lg-1">Nombre Animal</th>
+                        <th class="col-lg-1">Raza</th>
+                        <th class="col-lg-0">Tipo Mascota</th>
+                        <th class="col-lg-0">Id Adoptante</th>
+                        <th class="col-lg-1">Nombre Adoptante</th>
+                        <th class="col-lg-1">Telefono Adoptante</th>
+                        <th class="col-lg-1">Correo Adoptante</th>
+                        <th class="col-lg-1">Cedula Adoptante</th>
+                        <th class="col-lg-1">Avances del proceso</th>
+                        <th class="col-lg-1">Encargado historial medico</th>
+                        <th class="col-lg-1">Acciones</th>
+                    </tr>
+                </thead>       
+                <tbody>
+                    <tr th:each="proceso : ${procesos}">
+                        <td th:text="${proceso.idproceso_adoptcion}"></td>
+                        <td th:text="${proceso.fecha_inicio}"></td>
+                        <td th:text="${proceso.fecha_fin}"></td>
+                        <td th:text="${proceso.estado}"></td>
+                        <td th:text="${proceso.animales.idanimales}"></td>
+                        <td th:text="${proceso.animales.nombre}"></td>
+                        <td th:text="${proceso.animales.raza}"></td>
+                        <td th:text="${proceso.animales.tipo_mascota}"></td>
+                        <td th:text="${proceso.registroAdoptante.idregistro_adoptante}"></td>
+                        <td th:text="${proceso.registroAdoptante.primer_nombre + ' ' + proceso.registroAdoptante.primer_apellido}"></td>
+                        <td th:text="${proceso.registroAdoptante.telefono}"></td>
+                        <td th:text="${proceso.registroAdoptante.correo}"></td>
+                        <td th:text="${proceso.registroAdoptante.tipo_documento + ' ' + proceso.registroAdoptante.num_cedula}"></td>
+                        <td th:text="${proceso.descripcion}"></td>
+                        <td th:text="${proceso.animales.historialClinico.personalFundacion.rol + ' ' + proceso.animales.historialClinico.personalFundacion.primer_nombre+ ' ' + proceso.animales.historialClinico.personalFundacion.primer_apellido}"></td>
+                        <td>
+                            <a href="#" class="btn btn-primary" th:href="@{/proceso/editar/{id}(id=${proceso.idproceso_adoptcion})}">Editar</a>
+                            <a href="#" class="btn btn-danger" th:href="@{/proceso/delete/{id}(id=${proceso.idproceso_adoptcion})}">Eliminar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <a href="/proceso/agregar" class="btn btn-success">Agregar Proceso de Adopción</a>
+    </div>
+
+    <!-- Enlaces a los archivos JavaScript de Bootstrap (jQuery primero, luego Popper.js y finalmente Bootstrap) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

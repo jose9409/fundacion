@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Personal Fundación</title>
+    <!-- Enlace al archivo CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Enlace a tu archivo de estilos personalizado si es necesario -->
+    <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
+</head>
+<body>
+    <!-- Menú -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/adoptantes/">Lista de Adoptantes</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/animales/">Lista de Animales</a>
+                        </li>
+                        <li class="nav-item active">
+                        <a class="nav-link" href="/proceso/">Lista de Procesos</a>
+                    	</li>
+                    	<li class="nav-item active">
+                        <a class="nav-link" href="/historial/">Lista Historiales Clinico</a>
+	                    </li>
+                  		  <li class="nav-item active">
+                        <a class="nav-link" href="/personal/">Lista de Personal Fundacion</a>
+                    	</li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Contenido principal -->
+    <div class="container ml-lg-0"> <!-- Eliminamos el margen izquierdo en pantallas grandes -->
+        <a href="/reporte/procesos/excel" class="btn btn-primary">Descargar Reporte</a>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="container">
+        <h2 class="mt-4">Lista de Personal Fundación</h2>
+        <table class="table table-striped mt-4">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Cédula</th>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>Rol</th>
+                    <th>Edad</th>
+                    <th>Género</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="personal : ${personalList}">
+                    <td th:text="${personal.idpersonal_fundacion}"></td>
+                    <td th:text="${personal.cedula}"></td>
+                    <td th:text="${personal.primer_nombre} + ' ' + ${personal.segundo_nombre}"></td>
+                    <td th:text="${personal.primer_apellido} + ' ' + ${personal.segundo_apellido}"></td>
+                    <td th:text="${personal.rol}"></td>
+                    <td th:text="${personal.edad}"></td>
+                    <td th:text="${personal.genero}"></td>
+                    <td th:text="${personal.estado}"></td>
+                    <td>
+                        <a href="#" class="btn btn-primary" th:href="@{/personal/editar/{id}(id=${personal.idpersonal_fundacion})}">Editar</a>
+                        <a href="#" class="btn btn-danger" th:href="@{/personal/eliminar/{id}(id=${personal.idpersonal_fundacion})}">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="/personal/agregar" class="btn btn-success">Agregar Personal Fundación</a>
+    </div>
+
+    <!-- Enlaces a los archivos JavaScript de Bootstrap (jQuery primero, luego Popper.js y finalmente Bootstrap) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

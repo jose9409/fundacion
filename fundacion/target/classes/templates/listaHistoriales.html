@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Historiales Clínicos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<!-- Menú -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/adoptantes/">Lista de Adoptantes</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/animales/">Lista de Animales</a>
+                        </li>
+                        <li class="nav-item active">
+                        <a class="nav-link" href="/proceso/">Lista de Procesos</a>
+                    	</li>
+                    	<li class="nav-item active">
+                        <a class="nav-link" href="/historial/">Lista Historiales Clinico</a>
+	                    </li>
+                  		  <li class="nav-item active">
+                        <a class="nav-link" href="/personal/">Lista de Personal Fundacion</a>
+                    	</li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+ <div class="container mt-5">
+        <a href="/reporte/adoptantes/excel" class="btn btn-primary">Descargar Reporte</a>
+    </div>
+
+    <div class="container mt-8">
+        <h1 class="mb-4">Lista de Historiales Clínicos</h1>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Fecha Ingreso</th>
+                    <th scope="col">Fecha Egreso</th>
+                    <th scope="col">Diagnóstico</th>
+                    <th scope="col">Enfermedades</th>
+                    <th scope="col">Medicamentos/Alergias</th>
+                    <th scope="col">Enfermedades</th>
+                    <th scope="col">Medico Encargado</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+<tbody>
+    <!-- Iterar sobre la lista de historiales -->
+    <tr th:each="historial : ${historiales}">
+        <td th:text="${historial.idhistorial_clinico}"></td>
+        <td th:text="${historial.fecha_ingreso + ' ' + historial.hora_ingreso}"></td>
+        <td th:text="${historial.fecha_egreso + ' ' + historial.hora_salida}"></td>
+        <td th:text="${historial.diagnostico}"></td>
+        <td th:text="${historial.enfermedades}"></td>
+        <td th:text="${historial.medicamentos_alergias}"></td>
+        <td th:text="${historial.enfermedades}"></td>
+        <td th:text="${historial.personalFundacion.rol + ' ' + historial.personalFundacion.primer_nombre + ' ' + historial.personalFundacion.segundo_nombre + ' ' + historial.personalFundacion.primer_apellido + ' ' +  historial.personalFundacion.segundo_apellido}"></td>
+        <td>
+            <a class="btn btn-primary btn-sm" th:href="@{'/historial/editar/' + ${historial.idhistorial_clinico}}">Editar</a>
+            <a class="btn btn-danger btn-sm" th:href="@{'/historial/eliminar/' + ${historial.idhistorial_clinico}}">Eliminar</a>
+        </td>
+    </tr>
+</tbody>
+        </table>
+        <a class="btn btn-success" href="/historial/agregar">Agregar Historial Clínico</a>
+    </div>
+</body>
+</html>

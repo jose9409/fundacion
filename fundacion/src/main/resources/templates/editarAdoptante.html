@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Adoptante</title>
+    <!-- Enlace al archivo CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Enlace a tu archivo de estilos personalizado si es necesario -->
+    <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>Editar Adoptante</h2>
+    <form th:action="@{/adoptantes/editar/{id}(id=${adoptante.idregistro_adoptante})}" th:object="${adoptante}" method="post">
+        <input type="hidden" th:field="*{idregistro_adoptante}">
+        <div class="form-group">
+            <label for="primerNombre">Primer Nombre:</label>
+            <input type="text" class="form-control" id="primerNombre" name="primerNombre" th:field="*{primer_nombre}" required>
+        </div>
+        <div class="form-group">
+            <label for="segundoNombre">Segundo Nombre:</label>
+            <input type="text" class="form-control" id="segundoNombre" name="segundoNombre" th:field="*{segundo_nombre}">
+        </div>
+        <div class="form-group">
+            <label for="primerApellido">Primer Apellido:</label>
+            <input type="text" class="form-control" id="primerApellido" name="primerApellido" th:field="*{primer_apellido}" required>
+        </div>
+        <div class="form-group">
+            <label for="segundoApellido">Segundo Apellido:</label>
+            <input type="text" class="form-control" id="segundoApellido" name="segundoApellido" th:field="*{segundo_apellido}">
+        </div>
+        <div class="form-group">
+            <label for="telefono">Teléfono:</label>
+            <input type="text" class="form-control" id="telefono" name="telefono" th:field="*{telefono}" required>
+        </div>
+        <div class="form-group">
+            <label for="correo">Correo:</label>
+            <input type="email" class="form-control" id="correo" name="correo" th:field="*{correo}" required>
+        </div>
+        <div class="form-group">
+            <label for="direccion">Dirección:</label>
+            <input type="text" class="form-control" id="direccion" name="direccion" th:field="*{dirreccion}" required>
+        </div>
+        <div class="form-group">
+            <label for="barrio">Barrio:</label>
+            <input type="text" class="form-control" id="barrio" name="barrio" th:field="*{barrio}" required>
+        </div>
+        <div class="form-group">
+            <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+            <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" th:field="*{fecha_nacimiento}" required>
+        </div>
+        <div class="form-group">
+            <label for="genero">Género:</label>
+            <select class="form-control" id="genero" name="genero" th:field="*{genero}" required>
+                <option value="M">Masculino</option>
+                <option value="F">Femenino</option>
+                <option value="O">Otro</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="tipoDocumento">Tipo de Documento:</label>
+            <select class="form-control" id="tipoDocumento" name="tipoDocumento" th:field="*{tipo_documento}" required>
+                <option value="CC">Cédula de Ciudadanía</option>
+                <option value="TI">Tarjeta de Identidad</option>
+                <option value="P">Pasaporte</option>
+                <!-- Agrega más opciones según los tipos de documento disponibles -->
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="numCedula">Número de Cédula:</label>
+            <input type="text" class="form-control" id="numCedula" name="numCedula" th:field="*{num_cedula}" required>
+        </div>
+<div class="form-group">
+    <label for="contraseña">Contraseña:</label>
+    <input type="password" class="form-control" id="contraseña" name="contraseña" th:field="*{contraseña}" value="*" readonly>
+</div>
+        <div class="form-group">
+            <label for="estado">Estado:</label>
+            <input type="text" class="form-control" id="estado" name="estado" th:field="*{estado}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+    </form>
+</div>
+
+<!-- Enlaces a los archivos JavaScript de Bootstrap (jQuery primero, luego Popper.js y finalmente Bootstrap) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

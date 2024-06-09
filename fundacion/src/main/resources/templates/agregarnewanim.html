@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Agregar Animal</title>
+    <!-- Enlace al archivo CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Enlace a tu archivo de estilos personalizado si es necesario -->
+    <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2>Agregar Animal</h2>
+
+    <form th:action="@{/animales/agregar}" th:object="${animal}" method="post">
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" class="form-control" th:field="*{nombre}" required>
+        </div>
+        <div class="form-group">
+            <label for="edad">Edad:</label>
+            <input type="number" id="edad" name="edad" class="form-control" th:field="*{edad}" required>
+        </div>
+        <div class="form-group">
+            <label for="genero">Género:</label>
+            <input type="text" id="genero" name="genero" class="form-control" th:field="*{genero}" required>
+        </div>
+        <div class="form-group">
+            <label for="raza">Raza:</label>
+            <input type="text" id="raza" name="raza" class="form-control" th:field="*{raza}" required>
+        </div>
+        <div class="form-group">
+            <label for="tipo_mascota">Tipo de mascota:</label>
+            <input type="text" id="tipo_mascota" name="tipo_mascota" class="form-control" th:field="*{tipo_mascota}" required>
+        </div>
+        <div class="form-group">
+            <label for="historialClinico">Historial Clínico:</label>
+            <select id="historialClinico" name="historialClinico" class="form-control" th:field="*{historialClinico}" required>
+                <option th:each="historialClinico : ${historialesClinicos}" th:value="${historialClinico.idhistorial_clinico}" th:text="${historialClinico.idhistorial_clinico}"></option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>
+
+<!-- Enlaces a los archivos JavaScript de Bootstrap (jQuery primero, luego Popper.js y finalmente Bootstrap) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Animal</title>
+    <!-- Enlace al archivo CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Enlace a tu archivo de estilos personalizado si es necesario -->
+    <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
+</head>
+<body>
+
+<div class="container">
+    <h2 class="mt-4">Editar Animal</h2>
+
+    <form th:action="@{/animales/editar/{id}(id=${animal.idanimales})}" th:object="${animal}" method="post">
+        <input type="hidden" th:field="*{idanimales}">
+        <div class="form-grsoup">
+            <label for="nombre">Nombre:</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" th:field="*{nombre}" required>
+        </div>
+        <div class="form-group">
+            <label for="edad">Edad:</label>
+            <input type="number" class="form-control" id="edad" name="edad" th:field="*{edad}" required>
+        </div>
+        <div class="form-group">
+            <label for="genero">Género:</label>
+            <input type="text" class="form-control" id="genero" name="genero" th:field="*{genero}" required>
+        </div>
+        <div class="form-group">
+            <label for="raza">Raza:</label>
+            <input type="text" class="form-control" id="raza" name="raza" th:field="*{raza}" required>
+        </div>
+        <div class="form-group">
+            <label for="tipo_mascota">Tipo de mascota:</label>
+            <input type="text" class="form-control" id="tipo_mascota" name="tipo_mascota" th:field="*{tipo_mascota}" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+
+    <a href="/animales/" class="btn btn-secondary mt-3">Volver a la Lista de Animales</a>
+</div>
+
+<!-- Enlaces a los archivos JavaScript de Bootstrap (jQuery primero, luego Popper.js y finalmente Bootstrap) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
